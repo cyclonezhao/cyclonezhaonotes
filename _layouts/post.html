@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{{page.title}}</title>
-  <link rel="stylesheet" type="text/css" href="../script/style.css">
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/script/style.css">
 </head>
 <body>
     <div id="siteWrapper">
@@ -16,8 +16,8 @@
       </div>
     </div>
   </body>
-<script type="text/javascript" src="../script/main.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/script/main.js"></script>
 {% if page.userAnswer %}
-<script type="text/javascript" src="../script/userAnswer.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/script/userAnswer.js"></script>
 {% endif %}
 </html>
