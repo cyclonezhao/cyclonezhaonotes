@@ -113,6 +113,7 @@
         var children = bodyContent.children;
         var fragment = document.createDocumentFragment();
         var answerPanel;
+
         while(children.length){
           var child = children[0];
           if(child.innerText && child.innerText.startsWith("Q: ")){
@@ -127,6 +128,8 @@
           }else{
             if(answerPanel){
               answerPanel.appendChild(child);
+            }else{
+              throw new Error("no answerPanel");
             }
           }
         }
