@@ -4,3 +4,4 @@ show_downloads: false
 is_project_page: false
 google_analytics:
 theme: jekyll-theme-cayman
+new_post_name: :title.md
