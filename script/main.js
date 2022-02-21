@@ -113,23 +113,28 @@
         var children = bodyContent.children;
         var fragment = document.createDocumentFragment();
         var answerPanel;
-
-        while(children.length){
-          var child = children[0];
+        for(var i = 0; i < children.length; i++){
+          var child = children[i];
           if(child.innerText && child.innerText.startsWith("Q: ")){
             var qa = createElementFromHTML("<div class='qa'></div>");
             child.className = "question";
             child.innerText = child.innerText.substring(3);
-            qa.appendChild(child);
+            qa.appendChild(createElementFromHTML(child.outerHTML));
 
             answerPanel = createElementFromHTML("<div class='answer'></div>");
             qa.appendChild(answerPanel);
             fragment.appendChild(qa);
           }else{
-            if(answerPanel){
-              answerPanel.appendChild(child);
+            if(answerPanel && child.tagName.toLowerCase() != 'h1'
+                && child.tagName.toLowerCase() != 'h2'
+                && child.tagName.toLowerCase() != 'h3'
+                && child.tagName.toLowerCase() != 'h4'
+                && child.tagName.toLowerCase() != 'h5'
+                && child.tagName.toLowerCase() != 'h6'
+                ){
+              answerPanel.appendChild(createElementFromHTML(child.outerHTML));
             }else{
-              throw new Error("no answerPanel");
+              fragment.appendChild(createElementFromHTML(child.outerHTML));
             }
           }
         }
