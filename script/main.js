@@ -8,7 +8,7 @@
         var contentDom = document.getElementById("bodyContent");
         var innerHTML = contentDom.innerHTML;
         innerHTML = innerHTML.replace(
-                /<h([\d])>([^<]+)<\/h([\d])>/gi,
+                /<h([\d])[^>]+>([^<]+)<\/h([\d])>/gi,
                 function (str, openLevel, titleText, closeLevel) {
                     if (openLevel != closeLevel) {
                         return str;
