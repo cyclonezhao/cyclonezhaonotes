@@ -113,8 +113,8 @@
         var children = bodyContent.children;
         var fragment = document.createDocumentFragment();
         var answerPanel;
-        for(var i = 0; i < children.length; i++){
-          var child = children[i];
+        while(children.length){
+          var child = children[0];
           if(child.innerText && child.innerText.startsWith("Q: ")){
             var qa = createElementFromHTML("<div class='qa'></div>");
             child.className = "question";
