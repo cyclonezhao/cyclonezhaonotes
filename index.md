@@ -8,6 +8,7 @@
       <p>cyclonezhaonotes/{{ post.url }}</p>
       <a href="{{ post.url }}">{{ post.title }}</a>
       <a href="{{ site.github.repository_name }}{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>
