@@ -98,8 +98,41 @@
                 answerPanel.setAttribute('style', 'display:inherit');
                 e.currentTarget.innerText = "隐藏答案";
             }
-
         };
+
+        function createElementFromHTML(htmlString) {
+          var div = document.createElement('div');
+          div.innerHTML = htmlString.trim();
+
+          // Change this to div.childNodes to support multiple top-level nodes.
+          return div.firstChild;
+        }
+
+        // 问题块处理（新）
+        var bodyContent = document.getElementById("bodyContent");
+        var children = bodyContent.children;
+        var fragment = document.createDocumentFragment();
+        var answerPanel;
+        for(var i = 0; i < children.length; i++){
+          var child = children[i];
+          if(child.innerText && child.innerText.startsWith("Q: ")){
+            var qa = createElementFromHTML("<div class='qa'></div>");
+            child.className = "question";
+            child.innerText = child.innerText.substring(3);
+            qa.appendChild(child);
+
+            answerPanel = createElementFromHTML("<div class='answer'></div>");
+            qa.appendChild(answerPanel);
+            fragment.appendChild(qa);
+          }else{
+            if(answerPanel){
+              answerPanel.appendChild(child);
+            }
+          }
+        }
+
+        bodyContent.innerHTML = "";
+        bodyContent.appendChild(fragment);
 
         // 问题块处理
         var qaArr = document.getElementsByClassName('qa');
