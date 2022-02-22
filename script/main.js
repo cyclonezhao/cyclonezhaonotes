@@ -89,12 +89,15 @@
 
         // 监听事件
         var showAnswer = function(e){
+            var question = e.currentTarget.parentNode.getElementsByClassName("question")[0];
             var answerPanel = e.currentTarget.parentNode.getElementsByClassName("answer")[0];
             var style = answerPanel.getAttribute('style');
             if(style){
                 answerPanel.removeAttribute('style');
+                question.removeAttribute('style');
                 e.currentTarget.innerText = "显示答案";
             }else{
+                question.setAttribute('style', "font-weight: bold;");
                 answerPanel.setAttribute('style', 'display:inherit');
                 e.currentTarget.innerText = "隐藏答案";
             }
