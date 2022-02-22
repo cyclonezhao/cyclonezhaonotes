@@ -76,6 +76,7 @@ body {
 .answer {
   display: none;
   background-color: #d9ffd9;
+  padding: 1em;
 }
 
 .userAnswer{
