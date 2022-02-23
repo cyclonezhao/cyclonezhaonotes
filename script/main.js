@@ -71,7 +71,6 @@
                     }
 
                     var anchor = titleText.replace(/ /g, "_");
-                    anchor = self + ' ' + anchor;
                     toc += "<li><a href=\"#" + anchor + "\">" + self + ' ' + titleText
                         + "</a></li>";
 
