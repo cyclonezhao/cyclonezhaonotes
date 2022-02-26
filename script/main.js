@@ -179,7 +179,7 @@
         }
       }, 100);
     };
-    if(screen.orientation.addEventListener){
+    if(screen && screen.orientation && screen.orientation.addEventListener){
       screen.orientation.addEventListener('change', orientationChangeFn);
     }else{
       window.addEventListener("orientationchange", orientationChangeFn);
