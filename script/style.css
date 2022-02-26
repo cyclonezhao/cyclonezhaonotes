@@ -77,6 +77,13 @@ body {
   #mainNavigation{
     display: none;
   }
+  #appWrapper {
+    width:auto;
+    left: auto;
+  }
+  #siteWrapper{
+    font-size: 1.1em;
+  }
 }
 
 .answer {
