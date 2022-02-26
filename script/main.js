@@ -177,6 +177,9 @@
       var style_str = outerDiv.getAttribute("style");
       style_str += "display:none;"
       outerDiv.setAttribute("style", style_str);
+      // 恢复滚动条
+      var body = document.getElementsByTagName("body")[0];
+      body.removeAttribute("style");
     });
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -207,6 +210,10 @@
       style_str = outerDiv.getAttribute("style");
       style_str = style_str.replace("display:none;", "");
       outerDiv.setAttribute("style", style_str);
+
+      // 禁止滚动条
+      var body = document.getElementsByTagName("body")[0];
+      body.setAttribute("style", "overflow:hidden;");
     }
 
   } catch (error) {
