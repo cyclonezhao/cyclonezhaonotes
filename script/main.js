@@ -166,7 +166,7 @@
     var viewport = getViewport();
     var windowWidth = viewport.width;
     var windowHeight = viewport.height;
-    window.addEventListener("orientationchange", function(event) {
+    screen.orientation.addEventListener('change', function(event) {
       windowWidth = event.currentTarget.outerWidth;
       windowHeight = event.currentTarget.outerHeight;
       var style_str = outerDiv.getAttribute("style");
