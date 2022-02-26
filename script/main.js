@@ -160,6 +160,24 @@
     }
 
     // ============= 图片处理 =============
+    var body = document.getElementsByTagName("body")[0];
+    var innerDiv = document.getElementById("innerdiv");
+    var outerDiv = document.getElementById("outerdiv");
+    var viewport = getViewport();
+    var windowWidth = viewport.width;
+    var windowHeight = viewport.height;
+    body.addEventListener("orientationchange", function(event) {
+      viewport = getViewport();
+      windowWidth = viewport.width;
+      windowHeight = viewport.height;
+      var style_str = outerDiv.getAttribute("style");
+      if(!style_str.includes("display:none;")){
+        var imgWidth = innerDiv.getAttribute("width");
+        var imgHeight = innerDiv.getAttribute("height");
+        setInnerDivSize(imgWidth, imgHeight);
+      }
+    });
+
     var imgArr = document.getElementsByTagName("img");
     for (var i = 0; i < imgArr.length; i++) {
       var img = imgArr[i];
@@ -170,21 +188,14 @@
       }
     }
     // 显示大图
-    var outerDiv = document.getElementById("outerdiv");
     outerDiv.addEventListener('click', function (e) {
       // 点击大图消失
-      var outerDiv = e.currentTarget;
       var style_str = outerDiv.getAttribute("style");
       style_str += "display:none;"
       outerDiv.setAttribute("style", style_str);
       // 恢复滚动条
-      var body = document.getElementsByTagName("body")[0];
       body.removeAttribute("style");
     });
-
-    var viewport = getViewport();
-    var windowWidth = viewport.width;
-    var windowHeight = viewport.height;
 
     function imgShow(e) {
       var smallImg = e.currentTarget;
@@ -197,32 +208,39 @@
       var imgHeight = smallImg.naturalHeight;//获取图片真实高度
 
       // 根据设备尺寸调整
-      if (imgWidth > windowWidth || imgHeight > windowHeight) {
-        imgHeight = imgHeight * (windowWidth / imgWidth);
-        imgWidth = windowWidth;
-        bigimg.setAttribute("width", imgWidth);
-      }
-
-      //设置#innerdiv的top和left属性
-      var w = (windowWidth - imgWidth) / 2;//计算图片与窗口左边距
-      var h = (windowHeight - imgHeight) / 2;//计算图片与窗口上边距
-      var innerDiv = document.getElementById("innerdiv");
-      style_str = "position:absolute;";
-      style_str += "top:" + h + "px;";
-      style_str += "left:" + w + "px;";
-      style_str += "width:" + imgWidth + "px;";
-      style_str += "height:" + imgHeight + "px;";
-      innerDiv.setAttribute("style", style_str);
+      setInnerDivSize(imgWidth, imgHeight);
 
       // 显示大图
-      var outerDiv = document.getElementById("outerdiv");
       style_str = outerDiv.getAttribute("style");
       style_str = style_str.replace("display:none;", "");
       outerDiv.setAttribute("style", style_str);
 
       // 禁止滚动条
-      var body = document.getElementsByTagName("body")[0];
       body.setAttribute("style", "overflow:hidden;");
+    }
+
+    function setInnerDivSize(imgWidth, imgHeight){
+      if (imgWidth > windowWidth || imgHeight > windowHeight) {
+        if(windowWidth > windowHeight){
+          imgHeight = imgHeight * (windowWidth / imgWidth);
+          imgWidth = windowWidth;
+          bigimg.setAttribute("width", imgWidth);
+        }else{
+          imgWidth = imgWidth * (windowHeight / imgHeight);
+          imgHeight = windowHeight;
+          bigimg.setAttribute("height", imgHeight);
+        }
+      }
+
+      //设置#innerdiv的top和left属性
+      var w = (windowWidth - imgWidth) / 2;//计算图片与窗口左边距
+      var h = (windowHeight - imgHeight) / 2;//计算图片与窗口上边距
+      style_str = "position:absolute;";
+      style_str += "top:" + h + "px;";
+      style_str += "left:" + w + "px;";
+      innerDiv.setAttribute("style", style_str);
+      innerDiv.setAttribute("width", imgWidth);
+      innerDiv.setAttribute("height", imgHeight);
     }
 
     function getViewport() {
