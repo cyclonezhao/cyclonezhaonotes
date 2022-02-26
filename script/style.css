@@ -73,6 +73,12 @@ body {
   background: #ffffff;
 }
 
+@media (max-width: 600px) {
+  #mainNavigation{
+    display: none;
+  }
+}
+
 .answer {
   display: none;
   background-color: #f5fff5;
