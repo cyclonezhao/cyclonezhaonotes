@@ -181,8 +181,10 @@
       var body = document.getElementsByTagName("body")[0];
       body.removeAttribute("style");
     });
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
+
+    var viewport = getViewport();
+    var windowWidth = viewport.width;
+    var windowHeight = viewport.height;
 
     function imgShow(e) {
       var smallImg = e.currentTarget;
@@ -214,6 +216,15 @@
       // 禁止滚动条
       var body = document.getElementsByTagName("body")[0];
       body.setAttribute("style", "overflow:hidden;");
+    }
+
+    function getViewport() {
+      var e = window, a = 'inner';
+      if (!('innerWidth' in window)) {
+        a = 'client';
+        e = document.documentElement || document.body;
+      }
+      return { width: e[a + 'Width'], height: e[a + 'Height'] };
     }
 
   } catch (error) {
