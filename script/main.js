@@ -196,6 +196,13 @@
       var imgWidth = smallImg.naturalWidth;//获取图片真实宽度
       var imgHeight = smallImg.naturalHeight;//获取图片真实高度
 
+      // 根据设备尺寸调整
+      if (imgWidth > windowWidth || imgHeight > windowHeight) {
+        imgHeight = imgHeight * (windowWidth / imgWidth);
+        imgWidth = windowWidth;
+        smallImg.setAttribute("width", imgWidth);
+      }
+
       //设置#innerdiv的top和left属性
       var w = (windowWidth - imgWidth) / 2;//计算图片与窗口左边距
       var h = (windowHeight - imgHeight) / 2;//计算图片与窗口上边距
