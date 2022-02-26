@@ -1,7 +1,9 @@
-title: Cyclonezhao Notes
+title: Cyclonezhao's Notes
 description: Cayman is a clean, responsive theme for GitHub Pages.
 show_downloads: false
-is_project_page: false
+github:
+  is_project_page: false
+
 google_analytics:
 theme: jekyll-theme-cayman
 new_post_name: :title.md
