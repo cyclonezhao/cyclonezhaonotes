@@ -166,16 +166,19 @@
     var viewport = getViewport();
     var windowWidth = viewport.width;
     var windowHeight = viewport.height;
-    screen.orientation.addEventListener('change', function(event) {
-      viewport = getViewport();
-      windowWidth = viewport.width;
-      windowHeight = viewport.height;
-      var style_str = outerDiv.getAttribute("style");
-      if(!style_str.includes("display:none;")){
-        var imgWidth = outerDiv.getAttribute("realImgWidth");
-        var imgHeight = outerDiv.getAttribute("realImgHeight");
-        setInnerDivSize(imgWidth, imgHeight);
-      }
+    screen.orientation.addEventListener('change', function (event) {
+      setTimeout(function () {
+        viewport = getViewport();
+        windowWidth = viewport.width;
+        windowHeight = viewport.height;
+        var style_str = outerDiv.getAttribute("style");
+        if (!style_str.includes("display:none;")) {
+          var imgWidth = outerDiv.getAttribute("realImgWidth");
+          var imgHeight = outerDiv.getAttribute("realImgHeight");
+          setInnerDivSize(imgWidth, imgHeight);
+        }
+      }, 300);
+
     });
 
     var imgArr = document.getElementsByTagName("img");
@@ -221,13 +224,13 @@
       body.setAttribute("style", "overflow:hidden;");
     }
 
-    function setInnerDivSize(imgWidth, imgHeight){
+    function setInnerDivSize(imgWidth, imgHeight) {
       if (imgWidth > windowWidth || imgHeight > windowHeight) {
-        if(windowWidth < windowHeight){
+        if (windowWidth < windowHeight) {
           imgHeight = imgHeight * (windowWidth / imgWidth);
           imgWidth = windowWidth;
           bigimg.setAttribute("width", imgWidth);
-        }else{
+        } else {
           imgWidth = imgWidth * (windowHeight / imgHeight);
           imgHeight = windowHeight;
           bigimg.setAttribute("width", imgWidth);
