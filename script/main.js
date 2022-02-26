@@ -166,7 +166,7 @@
     var viewport = getViewport();
     var windowWidth = viewport.width;
     var windowHeight = viewport.height;
-    body.addEventListener("orientationchange", function(event) {
+    window.addEventListener("orientationchange", function(event) {
       viewport = getViewport();
       windowWidth = viewport.width;
       windowHeight = viewport.height;
@@ -221,14 +221,14 @@
 
     function setInnerDivSize(imgWidth, imgHeight){
       if (imgWidth > windowWidth || imgHeight > windowHeight) {
-        if(windowWidth > windowHeight){
+        if(windowWidth < windowHeight){
           imgHeight = imgHeight * (windowWidth / imgWidth);
           imgWidth = windowWidth;
           bigimg.setAttribute("width", imgWidth);
         }else{
           imgWidth = imgWidth * (windowHeight / imgHeight);
           imgHeight = windowHeight;
-          bigimg.setAttribute("height", imgHeight);
+          bigimg.setAttribute("width", imgWidth);
         }
       }
 
