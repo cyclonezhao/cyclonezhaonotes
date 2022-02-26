@@ -200,7 +200,7 @@
       if (imgWidth > windowWidth || imgHeight > windowHeight) {
         imgHeight = imgHeight * (windowWidth / imgWidth);
         imgWidth = windowWidth;
-        smallImg.setAttribute("width", imgWidth);
+        bigimg.setAttribute("width", imgWidth);
       }
 
       //设置#innerdiv的top和left属性
