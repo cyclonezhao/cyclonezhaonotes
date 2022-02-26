@@ -172,8 +172,8 @@
       windowHeight = viewport.height;
       var style_str = outerDiv.getAttribute("style");
       if(!style_str.includes("display:none;")){
-        var imgWidth = innerDiv.getAttribute("width");
-        var imgHeight = innerDiv.getAttribute("height");
+        var imgWidth = outerDiv.getAttribute("realImgWidth");
+        var imgHeight = outerDiv.getAttribute("realImgHeight");
         setInnerDivSize(imgWidth, imgHeight);
       }
     });
@@ -214,6 +214,8 @@
       style_str = outerDiv.getAttribute("style");
       style_str = style_str.replace("display:none;", "");
       outerDiv.setAttribute("style", style_str);
+      outerDiv.setAttribute("realImgWidth", smallImg.naturalWidth);
+      outerDiv.setAttribute("realImgHeight", smallImg.naturalHeight);
 
       // 禁止滚动条
       body.setAttribute("style", "overflow:hidden;");
