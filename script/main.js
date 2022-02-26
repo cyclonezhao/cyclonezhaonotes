@@ -166,7 +166,7 @@
     var viewport = getViewport();
     var windowWidth = viewport.width;
     var windowHeight = viewport.height;
-    screen.orientation.addEventListener('change', function (event) {
+    var orientationChangeFn = function () {
       setTimeout(function () {
         viewport = getViewport();
         windowWidth = viewport.width;
@@ -177,9 +177,13 @@
           var imgHeight = outerDiv.getAttribute("realImgHeight");
           setInnerDivSize(imgWidth, imgHeight);
         }
-      }, 300);
-
-    });
+      }, 100);
+    };
+    if(screen.orientation.addEventListener){
+      screen.orientation.addEventListener('change', orientationChangeFn);
+    }else{
+      window.addEventListener("orientationchange", orientationChangeFn);
+    }
 
     var imgArr = document.getElementsByTagName("img");
     for (var i = 0; i < imgArr.length; i++) {
