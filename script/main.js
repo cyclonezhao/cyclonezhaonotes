@@ -167,9 +167,8 @@
     var windowWidth = viewport.width;
     var windowHeight = viewport.height;
     window.addEventListener("orientationchange", function(event) {
-      viewport = getViewport();
-      windowWidth = viewport.width;
-      windowHeight = viewport.height;
+      windowWidth = event.currentTarget.outerWidth;
+      windowHeight = event.currentTarget.outerHeight;
       var style_str = outerDiv.getAttribute("style");
       if(!style_str.includes("display:none;")){
         var imgWidth = outerDiv.getAttribute("realImgWidth");
