@@ -73,9 +73,16 @@ body {
   background: #ffffff;
 }
 
-@media (max-width: 600px) {
+@media only screen and (orientation: portrait) {
   #mainNavigation{
     display: none;
+    width: 80%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 888;
+    font-size: 1.1em;
+    line-height: 1.5em;
   }
   #appWrapper {
     width:auto;
@@ -84,6 +91,16 @@ body {
   #siteWrapper{
     font-size: 1.1em;
   }
+  #showContent{
+    position: fixed;
+    z-index: 999;
+    right: 0;
+    background-color: #fff;
+  }
+}
+
+#showContent{
+  display: none;
 }
 
 .answer {

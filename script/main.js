@@ -261,6 +261,20 @@
       return { width: e[a + 'Width'], height: e[a + 'Height'] };
     }
 
+    // ======= 手机竖屏显示目录 ======
+    var showContent = document.getElementById("showContent");
+    showContent.addEventListener("click", function(e){
+      var showingContent = showContent.getAttribute("showingContent");
+      var mainNavigation = document.getElementById("mainNavigation");
+      if(showingContent){
+        mainNavigation.removeAttribute("style");
+        showContent.removeAttribute("showingContent");
+      }else{
+        mainNavigation.setAttribute("style", "display:block;");
+        showContent.setAttribute("showingContent", "1");
+      }
+    });
+
   } catch (error) {
     alert(error.message);
     throw error;
