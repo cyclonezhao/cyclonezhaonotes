@@ -92,6 +92,7 @@ body {
     font-size: 1.1em;
   }
   #showContent{
+    display: block;
     position: fixed;
     z-index: 999;
     right: 0;
