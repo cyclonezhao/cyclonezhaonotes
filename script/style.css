@@ -73,6 +73,10 @@ body {
   background: #ffffff;
 }
 
+#showContent{
+  display: none;
+}
+
 @media only screen and (orientation: portrait) {
   #mainNavigation{
     display: none;
@@ -98,10 +102,6 @@ body {
     right: 0;
     background-color: #fff;
   }
-}
-
-#showContent{
-  display: none;
 }
 
 .answer {
