@@ -95,6 +95,8 @@
         answerPanel.removeAttribute('style');
         question.removeAttribute('style');
         e.currentTarget.innerText = "显示答案";
+        // 滚动到 question 的位置
+        question.scrollIntoView();
       } else {
         question.setAttribute('style', "font-weight: bold;");
         answerPanel.setAttribute('style', 'display:inherit');
