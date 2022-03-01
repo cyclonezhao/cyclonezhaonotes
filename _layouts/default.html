@@ -6,6 +6,9 @@
   </head>
   <body>
     {% include sineCanvas.html %}
+    <header class="page-header" role="banner">
+      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+    </header>
     <main id="content" class="main-content" role="main">
       {{ content }}
       <footer class="site-footer">
