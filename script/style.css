@@ -67,10 +67,17 @@ body {
 
 #bodyContent {
   padding: 1.5rem;
+  /* 设置这个，不会影响实际宽度，且代码块就能有内部滚动条而外部没有，原理不明。 */
+  width: 1px;
   flex: 1 0 70%;
   height: 100%;
   min-height: 100vh;
   background: #ffffff;
+}
+
+/* 代码块有内部滚动条 */
+.highlighter-rouge{
+  overflow-x:scroll;
 }
 
 #showContent{
@@ -85,22 +92,25 @@ body {
     top: 0;
     right: 0;
     z-index: 888;
-    font-size: 1.1em;
+    /* font-size: 1.1em; */
     line-height: 1.5em;
   }
   #appWrapper {
     width:auto;
     left: auto;
   }
-  #siteWrapper{
+  /* #siteWrapper{
     font-size: 1.1em;
-  }
+  } */
   #showContent{
     display: block;
     position: fixed;
     z-index: 999;
     right: 0;
     background-color: #fff;
+  }
+  #bodyContent{
+    width: calc(100vw - 3rem);
   }
 }
 
