@@ -76,7 +76,7 @@ body {
 }
 
 /* 代码块有内部滚动条 */
-.highlighter-rouge{
+.highlighter{
   overflow-x:scroll;
 }
 
