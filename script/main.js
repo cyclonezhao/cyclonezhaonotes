@@ -92,6 +92,8 @@
       var answerPanel = e.currentTarget.parentNode.getElementsByClassName("answer")[0];
       var style = answerPanel.getAttribute('style');
       if (style) {
+        var scrollTop = document.body.parentNode.scrollTop;
+        scrollTop -= e.currentTarget.parentNode.scrollHeight;
         answerPanel.removeAttribute('style');
         question.removeAttribute('style');
         e.currentTarget.innerText = "显示答案";
@@ -100,7 +102,8 @@
         // alertStr += " & e.currentTarget.scrollHeight" + e.currentTarget.scrollHeight;
         // alertStr += " & document.body.parentNode.scrollTop" + document.body.parentNode.scrollTop;
         // alertStr += " & e.currentTarget.parentNode.scrollHeight" + e.currentTarget.parentNode.scrollHeight;
-        document.body.scrollTop -= e.currentTarget.parentNode.scrollHeight;
+        scrollTop += e.currentTarget.parentNode.scrollHeight;
+        document.body.scrollTop = scrollTop;
         document.body.parentNode.scrollTop -= 1;
         document.body.parentNode.scrollTop += 1;
         // alert(alertStr);
