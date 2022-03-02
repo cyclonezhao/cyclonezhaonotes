@@ -103,7 +103,7 @@
         // alertStr += " & document.body.parentNode.scrollTop" + document.body.parentNode.scrollTop;
         // alertStr += " & e.currentTarget.parentNode.scrollHeight" + e.currentTarget.parentNode.scrollHeight;
         scrollTop += e.currentTarget.parentNode.scrollHeight;
-        document.body.scrollTop = scrollTop;
+        document.body.parentNode.scrollTop = scrollTop;
         document.body.parentNode.scrollTop -= 1;
         document.body.parentNode.scrollTop += 1;
         // alert(alertStr);
