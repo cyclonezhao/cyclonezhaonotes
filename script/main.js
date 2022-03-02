@@ -95,8 +95,10 @@
         answerPanel.removeAttribute('style');
         question.removeAttribute('style');
         e.currentTarget.innerText = "显示答案";
-        // 滚动到 question 的位置
-        question.scrollIntoView();
+        // 滚动回展开的位置
+        document.body.scrollTop -= e.currentTarget.scrollHeight;
+        document.body.parentNode.scrollTop -= 1;
+        document.body.parentNode.scrollTop += 1;
       } else {
         question.setAttribute('style', "font-weight: bold;");
         answerPanel.setAttribute('style', 'display:inherit');
