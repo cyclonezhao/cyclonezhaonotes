@@ -119,6 +119,7 @@
     var children = bodyContent.children;
     var fragment = document.createDocumentFragment();
     var answerPanel;
+    var inQA = false;
     for (var i = 0; i < children.length; i++) {
       var child = children[i];
       if (child.innerText && child.innerText.startsWith("Q: ")) {
@@ -130,7 +131,8 @@
         answerPanel = createElementFromHTML("<div class='answer'></div>");
         qa.appendChild(answerPanel);
         fragment.appendChild(qa);
-      } else {
+        inQA = true;
+      } else if(inQA){
         if (answerPanel && child.tagName.toLowerCase() != 'h1'
           && child.tagName.toLowerCase() != 'h2'
           && child.tagName.toLowerCase() != 'h3'
@@ -141,7 +143,10 @@
           answerPanel.appendChild(createElementFromHTML(child.outerHTML));
         } else {
           fragment.appendChild(createElementFromHTML(child.outerHTML));
+          inQA = false;
         }
+      } else{
+        fragment.appendChild(createElementFromHTML(child.outerHTML));
       }
     }
 
