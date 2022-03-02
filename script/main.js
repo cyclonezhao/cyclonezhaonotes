@@ -96,9 +96,14 @@
         question.removeAttribute('style');
         e.currentTarget.innerText = "显示答案";
         // 滚动回展开的位置
-        document.body.scrollTop -= e.currentTarget.scrollHeight;
+        // var alertStr = "document.body.scrollTop:" + document.body.scrollTop;
+        // alertStr += " & e.currentTarget.scrollHeight" + e.currentTarget.scrollHeight;
+        // alertStr += " & document.body.parentNode.scrollTop" + document.body.parentNode.scrollTop;
+        // alertStr += " & e.currentTarget.parentNode.scrollHeight" + e.currentTarget.parentNode.scrollHeight;
+        document.body.scrollTop -= e.currentTarget.parentNode.scrollHeight;
         document.body.parentNode.scrollTop -= 1;
         document.body.parentNode.scrollTop += 1;
+        // alert(alertStr);
       } else {
         question.setAttribute('style', "font-weight: bold;");
         answerPanel.setAttribute('style', 'display:inherit');
