@@ -2,14 +2,22 @@
 @import "variables";
 
 table {
-    // display: block;
-    // width: 100%;
-    // overflow: auto;
+    display: block;
+    width: 100%;
+    overflow: auto;
     word-break: normal;
     word-break: keep-all; // For Firefox to horizontally scroll wider tables.
     -webkit-overflow-scrolling: touch;
     border-collapse: collapse;
     border-spacing: 0;
+
+    tr {
+        background-color: #fff;
+    }
+
+    tr:nth-child(2n) {
+        background-color: #f6f8fa;
+    }
 
     th {
         font-weight: bold;
