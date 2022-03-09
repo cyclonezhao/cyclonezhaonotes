@@ -126,36 +126,60 @@
     // 问题块处理（新）
     var bodyContent = document.getElementById("bodyContent");
     var children = bodyContent.children;
+    var _children = [];
+    for (var i = 0; i < children.length; i++) {
+      _children.push(children[i]);
+    }
+
     var fragment = document.createDocumentFragment();
     var answerPanel;
     var inQA = false;
-    for (var i = 0; i < children.length; i++) {
-      var child = children[i];
-      if (child.innerText && child.innerText.startsWith("Q: ")) {
-        var qa = createElementFromHTML("<div class='qa'></div>");
-        child.className = "question";
-        child.innerText = child.innerText.substring(3);
-        qa.appendChild(createElementFromHTML(child.outerHTML));
+    var inQuestionPanel = false;
+    var questionPanel;
+    for (var i = 0; i < _children.length; i++) {
+      var child = _children[i];
+      if (child.innerText && child.innerText.startsWith("Q-BEGIN")) {
+        inQuestionPanel = true;
+        questionPanel = createElementFromHTML("<div></div>");
+      }else if (child.innerText && child.innerText.startsWith("Q-END")){
+        inQuestionPanel = false;
+      }else{
+        if (child.innerText && child.innerText.startsWith("Q: ")) {
+          var qa = createElementFromHTML("<div class='qa'></div>");
+          child.className = "question";
+          child.innerText = child.innerText.substring(3);
 
-        answerPanel = createElementFromHTML("<div class='answer'></div>");
-        qa.appendChild(answerPanel);
-        fragment.appendChild(qa);
-        inQA = true;
-      } else if(inQA){
-        if (answerPanel && child.tagName.toLowerCase() != 'h1'
-          && child.tagName.toLowerCase() != 'h2'
-          && child.tagName.toLowerCase() != 'h3'
-          && child.tagName.toLowerCase() != 'h4'
-          && child.tagName.toLowerCase() != 'h5'
-          && child.tagName.toLowerCase() != 'h6'
-        ) {
-          answerPanel.appendChild(createElementFromHTML(child.outerHTML));
-        } else {
-          fragment.appendChild(createElementFromHTML(child.outerHTML));
-          inQA = false;
+          if(inQuestionPanel){
+            questionPanel.appendChild(child);
+            qa.appendChild(questionPanel);
+          }else{
+            qa.appendChild(child);
+          }
+  
+          answerPanel = createElementFromHTML("<div class='answer'></div>");
+          qa.appendChild(answerPanel);
+          fragment.appendChild(qa);
+          inQA = true;
+        } else if(inQA){
+          if (answerPanel && child.tagName.toLowerCase() != 'h1'
+            && child.tagName.toLowerCase() != 'h2'
+            && child.tagName.toLowerCase() != 'h3'
+            && child.tagName.toLowerCase() != 'h4'
+            && child.tagName.toLowerCase() != 'h5'
+            && child.tagName.toLowerCase() != 'h6'
+          ) {
+            if(inQuestionPanel){
+              questionPanel.appendChild(child);
+            }else{
+              answerPanel.appendChild(child);
+            }
+          } else {
+            fragment.appendChild(child);
+            inQA = false;
+          }
+        } else{
+          fragment.appendChild(child);
         }
-      } else{
-        fragment.appendChild(createElementFromHTML(child.outerHTML));
       }
     }
 
