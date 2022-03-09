@@ -89,19 +89,24 @@
     // 监听事件
     var showAnswer = function (e) {
       var _currentTarget = e.currentTarget;
-      var question = _currentTarget.parentNode.getElementsByClassName("question")[0];
-      var answerPanel = _currentTarget.parentNode.getElementsByClassName("answer")[0];
-      var showAnswer = _currentTarget.parentNode.getElementsByClassName("showAnswer")[0];
+      var _currentParent = _currentTarget.parentNode;
+      if(!_currentParent.getAttribute("class")){
+        _currentParent = _currentParent.parentNode;
+      }
+
+      var question = _currentParent.getElementsByClassName("question")[0];
+      var answerPanel = _currentParent.getElementsByClassName("answer")[0];
+      var showAnswer = _currentParent.getElementsByClassName("showAnswer")[0];
       var style = answerPanel.getAttribute('style');
       if (style) {
         var scrollTop = document.body.parentNode.scrollTop;
-        scrollTop -= _currentTarget.parentNode.scrollHeight;
+        scrollTop -= _currentParent.scrollHeight;
         answerPanel.removeAttribute('style');
         question.removeAttribute('style');
         showAnswer.innerText = "显示答案";
         
         if(_currentTarget.getAttribute("class") == "showAnswer"){
-          scrollTop += _currentTarget.parentNode.scrollHeight;
+          scrollTop += _currentParent.scrollHeight;
           document.body.parentNode.scrollTop = scrollTop;
           document.body.parentNode.scrollTop -= 1;
           document.body.parentNode.scrollTop += 1;
