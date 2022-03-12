@@ -207,6 +207,42 @@
       showBtns[i].addEventListener('click', showAnswer);
     }
 
+    // ======= 收起所有 ======
+    var collapseAll = document.getElementById("collapseAll");
+    collapseAll.addEventListener("click", function(e){
+      var scrollTop = document.body.parentNode.scrollTop;
+      var clientHeight = document.body.parentNode.clientHeight;
+      var middle = scrollTop += clientHeight/2;
+      var deltaToMiddle;
+      
+      // 在收起前，先判断当前scrollTop下屏幕中间是哪个问题，收起后自动将那个问题滚动到屏幕中央。
+      var questions = document.getElementsByClassName('question');
+      var targetQuestion;
+      for(var i = 0; i < questions.length; i++){
+        var question = questions[i];
+        if(question.offsetTop <= middle){
+          targetQuestion = question;
+          deltaToMiddle = question.offsetTop - middle;
+        }else{
+          break;
+        }
+      }
+
+      // 执行收起
+      for(var i = 0; i < questions.length; i++){
+        var question = questions[i];
+        showAnswer({"currentTarget": question});
+      }
+      
+      // 适配滚动
+      if(targetQuestion){
+        targetQuestion.scrollIntoView();
+        document.body.parentNode.scrollTop -= (clientHeight/2 + deltaToMiddle);
+      }else{
+        document.body.parentNode.scrollTop = 0;
+      }
+    });
+
     // ============= 图片处理 =============
     var body = document.getElementsByTagName("body")[0];
     var innerDiv = document.getElementById("innerdiv");
