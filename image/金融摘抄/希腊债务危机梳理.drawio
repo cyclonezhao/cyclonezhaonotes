@@ -1,0 +1,30 @@
+<mxfile host="app.diagrams.net" modified="2022-04-05T01:22:29.116Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36" etag="IVUUVnPRXu0hSLOhd_j-" version="17.1.3" type="github" pages="2">
+  <diagram id="wb6KpY6fXMX8m_jBLxzi" name="Page-1">
+    <mxGraphModel dx="939" dy="615" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GjVEPD-kqBgG74Y0Jm4b-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="kVhZjNHkc6t4Xjb-D3MW-1" target="GjVEPD-kqBgG74Y0Jm4b-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kVhZjNHkc6t4Xjb-D3MW-1" value="开始" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="360" y="290" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GjVEPD-kqBgG74Y0Jm4b-1" value="偷税漏税&lt;br&gt;贪污腐败严重&lt;br&gt;造成滞涨" style="whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="350" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="2uf7d5lVBQVOwbvuDn4e" name="Page-2">
+    <mxGraphModel dx="905" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="V6ise3XsoBhNcANNtuBL-0" />
+        <mxCell id="V6ise3XsoBhNcANNtuBL-1" parent="V6ise3XsoBhNcANNtuBL-0" />
+        <mxCell id="V6ise3XsoBhNcANNtuBL-2" value="" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="V6ise3XsoBhNcANNtuBL-1">
+          <mxGeometry x="190" y="260" width="100" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
