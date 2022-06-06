@@ -6,6 +6,19 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   <title>{{page.title}}</title>
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/script/style.css">
+  {% if page.mathjax %}
+  <script <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          inlineMath: [['$','$']]
+          }
+      });
+  </script>
+  {% endif %}
 </head>
 <body>
   <!-- 显示大图 -->

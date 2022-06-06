@@ -8,3 +8,4 @@ google_analytics:
 theme: jekyll-theme-cayman
 new_post_name: :title.md
 permalink: /:title:output_ext
+markdown: kramdown
