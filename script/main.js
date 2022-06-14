@@ -141,14 +141,32 @@
     var inQA = false;
     var inQuestionPanel = false;
     var questionPanel;
+    var inDescription;
+    var descriptionPanel;
     for (var i = 0; i < _children.length; i++) {
       var child = _children[i];
+
+      // Q-BEGIN-END
       if (child.innerText && child.innerText.startsWith("Q-BEGIN")) {
         inQuestionPanel = true;
         questionPanel = createElementFromHTML("<div></div>");
-      }else if (child.innerText && child.innerText.startsWith("Q-END")){
+      }else if (inQuestionPanel && child.innerText && child.innerText.startsWith("Q-END")){
         inQuestionPanel = false;
+
+      // DESCRIPTION-BEGIN-END
+      }else if (child.innerText && child.innerText.startsWith("DESCRIPTION-BEGIN")) {
+        inDescription = true;
+        if(inQA){
+          inQA = false;
+          fragment.appendChild(createElementFromHTML("<hr/>"));
+        }
+        descriptionPanel = createElementFromHTML("<div></div>");
+      }else if (inDescription && child.innerText && child.innerText.startsWith("DESCRIPTION-END")){
+        inDescription = false;
+        fragment.appendChild(descriptionPanel);
       }else{
+
+        // ENTERING QA
         if (child.innerText && child.innerText.startsWith("Q: ")) {
           var qa = createElementFromHTML("<div class='qa'></div>");
           child.className = "question";
@@ -165,6 +183,8 @@
           qa.appendChild(answerPanel);
           fragment.appendChild(qa);
           inQA = true;
+
+        // IN QA
         } else if(inQA){
           if (answerPanel && child.tagName.toLowerCase() != 'h1'
             && child.tagName.toLowerCase() != 'h2'
@@ -178,12 +198,18 @@
             }else{
               answerPanel.appendChild(child);
             }
-          } else {
+          } else{
             fragment.appendChild(child);
             inQA = false;
           }
+
+        // NOT ENTERING QA AND NOT IN QA
         } else{
-          fragment.appendChild(child);
+          if(inDescription){
+            descriptionPanel.appendChild(child);
+          }else{
+            fragment.appendChild(child);
+          }
         }
       }
     }
