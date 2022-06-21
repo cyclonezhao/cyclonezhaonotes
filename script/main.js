@@ -192,6 +192,7 @@
             && child.tagName.toLowerCase() != 'h4'
             && child.tagName.toLowerCase() != 'h5'
             && child.tagName.toLowerCase() != 'h6'
+            && !(child.innerText && (child.innerText.startsWith("D: ") || child.innerText.startsWith("HRD: ")))
           ) {
             if(inQuestionPanel){
               questionPanel.appendChild(child);
@@ -199,6 +200,14 @@
               answerPanel.appendChild(child);
             }
           } else{
+            if(child.innerText && (child.innerText.startsWith("D: ") || child.innerText.startsWith("HRD: "))){
+              if(child.innerText.startsWith("HRD: ")){
+                fragment.appendChild(createElementFromHTML("<hr/>"));
+                child.innerText = child.innerText.substring(5);
+              }else{
+                child.innerText = child.innerText.substring(3);
+              }
+            }
             fragment.appendChild(child);
             inQA = false;
           }
@@ -384,6 +393,15 @@
         showContent.setAttribute("showingContent", "1");
       }
     });
+
+    document.getElementById("appWrapper").addEventListener("click", function(e){
+      var showingContent = showContent.getAttribute("showingContent");
+      if(showingContent){
+        mainNavigation.removeAttribute("style");
+        showContent.removeAttribute("showingContent");
+        e.stopPropagation();
+      }
+    }, true);
 
   } catch (error) {
     alert(error.message);
