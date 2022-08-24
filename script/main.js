@@ -319,6 +319,7 @@
       var style_str = outerDiv.getAttribute("style");
       style_str += "display:none;"
       outerDiv.setAttribute("style", style_str);
+      bigimg.removeAttribute("width");
       // 恢复滚动条
       body.removeAttribute("style");
     });
